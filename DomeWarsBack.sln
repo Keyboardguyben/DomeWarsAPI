@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomeWarsBLL", "DomeWarsBLL\DomeWarsBLL.csproj", "{6AAADB40-4095-4BC4-A54D-74521CE0CD89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomeWarsBLL", "DomeWarsBLL\DomeWarsBLL.csproj", "{6AAADB40-4095-4BC4-A54D-74521CE0CD89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomeWarsAPI", "DomeWarsAPI\DomeWarsAPI.csproj", "{B45F92AC-67CB-4760-946E-F7EEF30C4BDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomeWarsAPI", "DomeWarsAPI\DomeWarsAPI.csproj", "{B45F92AC-67CB-4760-946E-F7EEF30C4BDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomeWarsDAL", "DomeWarsDAL\DomeWarsDAL.csproj", "{B7AA1B84-C658-485B-8051-7D99F75881C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomeWarsDAL", "DomeWarsDAL\DomeWarsDAL.csproj", "{B7AA1B84-C658-485B-8051-7D99F75881C1}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DomeWarsDB", "DomeWarsDB\DomeWarsDB.sqlproj", "{BF384509-A7E6-46D3-A1A9-F04B59D501DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomeWarsDomain", "DomeWarsDomain\DomeWarsDomain.csproj", "{00B94D80-154F-4498-A57A-857F69465B37}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,12 +29,10 @@ Global
 		{B7AA1B84-C658-485B-8051-7D99F75881C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7AA1B84-C658-485B-8051-7D99F75881C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7AA1B84-C658-485B-8051-7D99F75881C1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BF384509-A7E6-46D3-A1A9-F04B59D501DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BF384509-A7E6-46D3-A1A9-F04B59D501DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BF384509-A7E6-46D3-A1A9-F04B59D501DB}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{BF384509-A7E6-46D3-A1A9-F04B59D501DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BF384509-A7E6-46D3-A1A9-F04B59D501DB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BF384509-A7E6-46D3-A1A9-F04B59D501DB}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{00B94D80-154F-4498-A57A-857F69465B37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00B94D80-154F-4498-A57A-857F69465B37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00B94D80-154F-4498-A57A-857F69465B37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00B94D80-154F-4498-A57A-857F69465B37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
