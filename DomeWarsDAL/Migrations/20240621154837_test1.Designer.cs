@@ -4,6 +4,7 @@ using DomeWarsDAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DomeWarsDAL.Migrations
 {
     [DbContext(typeof(DomeWarsContext))]
-    partial class DomeWarsContextModelSnapshot : ModelSnapshot
+    [Migration("20240621154837_test1")]
+    partial class test1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,14 +46,10 @@ namespace DomeWarsDAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TerritoryId")
+                    b.Property<int>("TerritoryId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("GangId");
-
-                    b.HasIndex("TerritoryId");
 
                     b.ToTable("Unit");
                 });
@@ -71,7 +70,7 @@ namespace DomeWarsDAL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("TerritoryId")
+                    b.Property<int>("TerritoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Type")
@@ -136,7 +135,7 @@ namespace DomeWarsDAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("GameId")
+                    b.Property<int>("GameId")
                         .HasColumnType("int");
 
                     b.Property<int>("Money")
@@ -146,7 +145,7 @@ namespace DomeWarsDAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PlayerId")
+                    b.Property<int>("PlayerId")
                         .HasColumnType("int");
 
                     b.Property<int>("PublicOpinion")
@@ -211,7 +210,7 @@ namespace DomeWarsDAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("GameId")
+                    b.Property<int>("GameId")
                         .HasColumnType("int");
 
                     b.Property<int?>("GangId")
@@ -240,28 +239,13 @@ namespace DomeWarsDAL.Migrations
                     b.ToTable("Territory");
                 });
 
-            modelBuilder.Entity("DemoEF.Domain.Entities.Unit", b =>
-                {
-                    b.HasOne("DomeWarsDomain.Entities.Gang", "Gang")
-                        .WithMany()
-                        .HasForeignKey("GangId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DomeWarsDomain.Entities.Territory", "Territory")
-                        .WithMany()
-                        .HasForeignKey("TerritoryId");
-
-                    b.Navigation("Gang");
-
-                    b.Navigation("Territory");
-                });
-
             modelBuilder.Entity("DomeWarsDomain.Entities.Business", b =>
                 {
                     b.HasOne("DomeWarsDomain.Entities.Territory", "Territory")
                         .WithMany()
-                        .HasForeignKey("TerritoryId");
+                        .HasForeignKey("TerritoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Territory");
                 });
@@ -278,12 +262,16 @@ namespace DomeWarsDAL.Migrations
             modelBuilder.Entity("DomeWarsDomain.Entities.Gang", b =>
                 {
                     b.HasOne("DomeWarsDomain.Entities.Game", "Game")
-                        .WithMany("Gangs")
-                        .HasForeignKey("GameId");
+                        .WithMany()
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DomeWarsDomain.Entities.Player", "Player")
-                        .WithMany("Gangs")
-                        .HasForeignKey("PlayerId");
+                        .WithMany()
+                        .HasForeignKey("PlayerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Game");
 
@@ -294,7 +282,9 @@ namespace DomeWarsDAL.Migrations
                 {
                     b.HasOne("DomeWarsDomain.Entities.Game", "Game")
                         .WithMany()
-                        .HasForeignKey("GameId");
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DomeWarsDomain.Entities.Gang", "Gang")
                         .WithMany("Territories")
@@ -305,19 +295,9 @@ namespace DomeWarsDAL.Migrations
                     b.Navigation("Gang");
                 });
 
-            modelBuilder.Entity("DomeWarsDomain.Entities.Game", b =>
-                {
-                    b.Navigation("Gangs");
-                });
-
             modelBuilder.Entity("DomeWarsDomain.Entities.Gang", b =>
                 {
                     b.Navigation("Territories");
-                });
-
-            modelBuilder.Entity("DomeWarsDomain.Entities.Player", b =>
-                {
-                    b.Navigation("Gangs");
                 });
 #pragma warning restore 612, 618
         }

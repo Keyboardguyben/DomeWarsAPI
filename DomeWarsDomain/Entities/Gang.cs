@@ -13,8 +13,12 @@ namespace DomeWarsDomain.Entities
         public string Color { get; set; } = null!;
         public int Money { get; set; }
         public int PublicOpinion { get; set; }
-        public int PlayerId { get; set; }
-        public int GameId { get; set; }
+        public int? PlayerId { get; set; }
+        public Player? Player { get; set; }
+        public int? GameId { get; set; }
+        public Game? Game { get; set; }
+        public List<Territory> Territories { get; set; }
+
 
     }
 }

@@ -17,6 +17,7 @@ namespace DomeWarsDAL
         public DbSet<Territory> Territory { get; set; }
         public DbSet<Player> Player { get; set; }
         public DbSet<Unit> Unit { get; set; }
+        public DbSet<Business> Business { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -28,7 +29,7 @@ namespace DomeWarsDAL
         {
             modelBuilder
                 .ApplyConfiguration(new PlayerConfig())
-
+                .ApplyConfiguration(new TerritoryConfig())
                 .ApplyConfiguration(new GameConfig()); 
         }
     }

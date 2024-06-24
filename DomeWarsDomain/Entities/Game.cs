@@ -14,6 +14,8 @@ namespace DomeWarsDomain.Entities
         public int Round {  get; set; }
         public int? MaxRound {  get; set; }
         public int PlayerNumber {  get; set; }
-        public int? WinnerId { get; set; }
+        public int? PlayerId { get; set; }
+        public Player? Player { get; set; }
+        public List<Gang> Gangs { get; set; }
     }
 }

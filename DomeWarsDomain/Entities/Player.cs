@@ -14,5 +14,6 @@ namespace DomeWarsDomain.Entities
         public string Password { get; set; } = null!;
         public string Role { get; set; } = null!;
         public int Xp { get; set; }
+        public List<Gang> Gangs { get; set; }
     }
 }
