@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DomeWarsDAL.Migrations
 {
     [DbContext(typeof(DomeWarsContext))]
-    [Migration("20240624072554_test2")]
-    partial class test2
+    [Migration("20240628094839_test1")]
+    partial class test1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -74,7 +74,7 @@ namespace DomeWarsDAL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("TerritoryId")
+                    b.Property<int>("TerritoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Type")
@@ -139,7 +139,7 @@ namespace DomeWarsDAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("GameId")
+                    b.Property<int>("GameId")
                         .HasColumnType("int");
 
                     b.Property<int>("Money")
@@ -149,7 +149,7 @@ namespace DomeWarsDAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PlayerId")
+                    b.Property<int>("PlayerId")
                         .HasColumnType("int");
 
                     b.Property<int>("PublicOpinion")
@@ -264,7 +264,9 @@ namespace DomeWarsDAL.Migrations
                 {
                     b.HasOne("DomeWarsDomain.Entities.Territory", "Territory")
                         .WithMany()
-                        .HasForeignKey("TerritoryId");
+                        .HasForeignKey("TerritoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Territory");
                 });
@@ -282,11 +284,15 @@ namespace DomeWarsDAL.Migrations
                 {
                     b.HasOne("DomeWarsDomain.Entities.Game", "Game")
                         .WithMany("Gangs")
-                        .HasForeignKey("GameId");
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DomeWarsDomain.Entities.Player", "Player")
                         .WithMany("Gangs")
-                        .HasForeignKey("PlayerId");
+                        .HasForeignKey("PlayerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Game");
 

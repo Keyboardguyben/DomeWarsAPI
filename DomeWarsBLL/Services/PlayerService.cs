@@ -1,0 +1,39 @@
+﻿using DomeWarsBLL.Interfaces.Repositories;
+using DomeWarsBLL.Interfaces.Services;
+using DomeWarsDomain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DomeWarsBLL.Services
+{
+    public class PlayerService(IPlayerRepository playerRepository) : IPlayerService
+    {
+        public void Add(Player player)
+        {
+            playerRepository.Add(player);
+        }
+
+        public void Delete(int id)
+        {
+            playerRepository.Delete(id);
+        }
+
+        public IEnumerable<Player> GetAll()
+        {
+            return playerRepository.GetAll();
+        }
+
+        public Player? GetById(int id)
+        {
+            return playerRepository.GetById(id);
+        }
+
+        public int Update(Player player)
+        {
+            return (int)playerRepository.Update(player);
+        }
+    }
+}

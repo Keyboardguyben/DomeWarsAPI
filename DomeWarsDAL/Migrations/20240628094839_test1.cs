@@ -28,23 +28,6 @@ namespace DomeWarsDAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Unit",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Hp = table.Column<int>(type: "int", nullable: false),
-                    Dmg = table.Column<int>(type: "int", nullable: false),
-                    GangId = table.Column<int>(type: "int", nullable: false),
-                    TerritoryId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Unit", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Game",
                 columns: table => new
                 {
@@ -108,7 +91,7 @@ namespace DomeWarsDAL.Migrations
                     RoundsSinceAttack = table.Column<int>(type: "int", nullable: true),
                     IsAttacked = table.Column<bool>(type: "bit", nullable: false),
                     GangId = table.Column<int>(type: "int", nullable: true),
-                    GameId = table.Column<int>(type: "int", nullable: false)
+                    GameId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -117,8 +100,7 @@ namespace DomeWarsDAL.Migrations
                         name: "FK_Territory_Game_GameId",
                         column: x => x.GameId,
                         principalTable: "Game",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Territory_Gang_GangId",
                         column: x => x.GangId,
@@ -146,6 +128,34 @@ namespace DomeWarsDAL.Migrations
                         principalTable: "Territory",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Unit",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Hp = table.Column<int>(type: "int", nullable: false),
+                    Dmg = table.Column<int>(type: "int", nullable: false),
+                    GangId = table.Column<int>(type: "int", nullable: false),
+                    TerritoryId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Unit", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Unit_Gang_GangId",
+                        column: x => x.GangId,
+                        principalTable: "Gang",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Unit_Territory_TerritoryId",
+                        column: x => x.TerritoryId,
+                        principalTable: "Territory",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -184,6 +194,16 @@ namespace DomeWarsDAL.Migrations
                 name: "IX_Territory_GangId",
                 table: "Territory",
                 column: "GangId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Unit_GangId",
+                table: "Unit",
+                column: "GangId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Unit_TerritoryId",
+                table: "Unit",
+                column: "TerritoryId");
         }
 
         /// <inheritdoc />

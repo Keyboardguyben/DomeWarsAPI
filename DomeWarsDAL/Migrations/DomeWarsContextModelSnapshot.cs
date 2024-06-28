@@ -71,7 +71,7 @@ namespace DomeWarsDAL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("TerritoryId")
+                    b.Property<int>("TerritoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Type")
@@ -136,7 +136,7 @@ namespace DomeWarsDAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("GameId")
+                    b.Property<int>("GameId")
                         .HasColumnType("int");
 
                     b.Property<int>("Money")
@@ -146,7 +146,7 @@ namespace DomeWarsDAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PlayerId")
+                    b.Property<int>("PlayerId")
                         .HasColumnType("int");
 
                     b.Property<int>("PublicOpinion")
@@ -261,7 +261,9 @@ namespace DomeWarsDAL.Migrations
                 {
                     b.HasOne("DomeWarsDomain.Entities.Territory", "Territory")
                         .WithMany()
-                        .HasForeignKey("TerritoryId");
+                        .HasForeignKey("TerritoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Territory");
                 });
@@ -279,11 +281,15 @@ namespace DomeWarsDAL.Migrations
                 {
                     b.HasOne("DomeWarsDomain.Entities.Game", "Game")
                         .WithMany("Gangs")
-                        .HasForeignKey("GameId");
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DomeWarsDomain.Entities.Player", "Player")
                         .WithMany("Gangs")
-                        .HasForeignKey("PlayerId");
+                        .HasForeignKey("PlayerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Game");
 

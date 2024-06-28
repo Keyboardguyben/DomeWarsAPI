@@ -12,13 +12,13 @@ namespace DomeWarsDomain.Entities
     {
         public int Id { get; set; }
         [MaxLength(50)]
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
         [MaxLength(30)]
-        public string Type { get; set; }
+        public string Type { get; set; } = null!;
         [DefaultValue(0)]
         public int Funds {  get; set; }
-        public int? TerritoryId { get; set; }
-        public Territory? Territory { get; set; }
+        public int TerritoryId { get; set; }
+        public Territory Territory { get; set; } = null!;
 
     }
 }
