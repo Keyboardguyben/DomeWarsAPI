@@ -14,5 +14,6 @@ namespace DomeWarsBLL.Interfaces.Repositories
         int Update(Territory territory);
         IEnumerable<Territory> GetAll();
         void Delete(int id);
+        IEnumerable<Territory> MakeMap(int GameID);
     }
 }

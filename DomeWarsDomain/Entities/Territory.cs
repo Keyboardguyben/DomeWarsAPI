@@ -13,7 +13,8 @@ namespace DomeWarsDomain.Entities
         public int PoliceAttention { get; set; }
         public int? RoundsSinceAttack { get; set; }
         public bool IsAttacked { get; set; }
-        public int? GangId { get; set; }
+        public int LocationId { get; set; }
+        public int? GangId { get; set; }  
         public Gang? Gang { get; set; }
         public int? GameId { get; set; }
         public Game? Game { get; set; }
