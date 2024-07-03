@@ -18,6 +18,13 @@ namespace DomeWarsAPI.Controllers
                 .Select(t => new TerritoryDTO(t)));
         }
 
+        [HttpGet("GetByGame")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public IActionResult GetByGame(int GameId) 
+        {
+            return Ok(territoryService.GetByGame(GameId).Select(t => new TerritoryDTO(t)));
+        }
+
         
 
     }

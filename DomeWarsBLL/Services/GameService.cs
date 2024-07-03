@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 
 namespace DomeWarsBLL.Services
 {
-    public class GameService(IGameRepository gameRepository) : IGameService
+    public class GameService(IGameRepository gameRepository , ITerritoryRepository territoryRepository) : IGameService
     {
         public void Delete(int id)
         {
+            territoryRepository.DeleteByGame(id);
             gameRepository.Delete(id);
         }
 
@@ -29,6 +30,7 @@ namespace DomeWarsBLL.Services
         public void NewGame(Game game)
         {
             gameRepository.NewGame(game);
+            territoryRepository.MakeMap(game.Id);
         }
     }
 }

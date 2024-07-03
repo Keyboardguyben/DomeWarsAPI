@@ -26,6 +26,11 @@ namespace DomeWarsBLL.Services
             return territoryRepository.GetAll();
         }
 
+        public IEnumerable<Territory> GetByGame(int GameID)
+        {
+            return territoryRepository.GetByGame(GameID);
+        }
+
         public Territory? GetById(int id)
         {
             return territoryRepository.GetById(id);

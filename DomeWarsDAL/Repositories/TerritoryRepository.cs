@@ -1,5 +1,6 @@
 ﻿using DomeWarsBLL.Interfaces.Repositories;
 using DomeWarsDomain.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,7 @@ namespace DomeWarsDAL.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Territory> MakeMap(int GameID)
+        public void MakeMap(int GameID)
         {
             List<Territory> Map1 = new List<Territory>();
 
@@ -40,8 +41,7 @@ namespace DomeWarsDAL.Repositories
 
             Territory territory1 = new Territory {
                 Name = "Parc industriel",
-                GameId = GameID , 
-                GangId = 0, 
+                GameId = GameID ,  
                 IsAttacked = false, 
                 PoliceAttention = 0,
                 LocationId = 1
@@ -50,7 +50,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Parc industriel",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 2
@@ -59,7 +58,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Marché Noir",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 3
@@ -68,7 +66,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Marché noir",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 4
@@ -77,7 +74,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Parc industriel",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 5
@@ -86,7 +82,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Parc industriel",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 6
@@ -95,7 +90,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Parc industriel",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 7
@@ -104,7 +98,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Bidonville",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 8
@@ -113,7 +106,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Bidonville",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 9
@@ -122,7 +114,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Bidonville",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 10
@@ -131,7 +122,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Bidonville",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 11
@@ -140,7 +130,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Parc industriel",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 12
@@ -149,7 +138,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Bidonville",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 13
@@ -158,7 +146,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Zone commerciale",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 14
@@ -167,7 +154,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Zone résidentielle",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 15
@@ -176,7 +162,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Zone résidentielle",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 16
@@ -185,7 +170,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Zone commerciale",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 17
@@ -194,7 +178,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Bidonville",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 18
@@ -203,7 +186,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Zone résidentielle",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 19
@@ -212,7 +194,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Zone résidentielle",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 20
@@ -221,7 +202,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Centreville",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 21
@@ -230,7 +210,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Centreville",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 22
@@ -239,7 +218,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Zone résidentielle",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 23
@@ -248,7 +226,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Zone résidentielle",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 24
@@ -257,7 +234,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Zone résidentielle",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 25 
@@ -266,7 +242,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Zone résidentielle",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 26
@@ -275,7 +250,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Centreville",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 27
@@ -284,7 +258,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Centreville",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 28
@@ -293,7 +266,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Zone résidentielle",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 29
@@ -302,7 +274,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Zone résidentielle",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 30
@@ -311,7 +282,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Bidonville",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 31
@@ -320,7 +290,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Zone commerciale",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 32
@@ -330,7 +299,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Zone résidentielle",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 33
@@ -339,7 +307,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Zone résidentielle",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 34
@@ -348,7 +315,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Zone commerciale",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 35
@@ -357,7 +323,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Bidonville",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 36
@@ -366,7 +331,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Parc industriel",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 37
@@ -375,7 +339,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Bidonville",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 38
@@ -384,7 +347,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Bidonville",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 39
@@ -393,7 +355,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Bidonville",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 40
@@ -402,7 +363,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Bidonville",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 41
@@ -411,7 +371,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Parc industriel",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 42
@@ -421,7 +380,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Parc industriel",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 43
@@ -430,7 +388,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Parc industriel",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 44
@@ -439,7 +396,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Marché noir",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 45
@@ -448,7 +404,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Marché noir",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 46
@@ -457,7 +412,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Parc industriel",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 47
@@ -466,7 +420,6 @@ namespace DomeWarsDAL.Repositories
             {
                 Name = "Parc industriel",
                 GameId = GameID,
-                GangId = 0,
                 IsAttacked = false,
                 PoliceAttention = 0,
                 LocationId = 4
@@ -524,9 +477,19 @@ namespace DomeWarsDAL.Repositories
             Map1.Add(territory48);
             #endregion
 
-
+            dbContext.Territory.AddRange(Map1);
+            dbContext.SaveChanges();
         }
 
+        public void DeleteByGame(int GameID)
+        {
+            dbContext.Territory.Where(t => t.GameId == GameID).ExecuteDelete();
+        }
+
+        public IEnumerable<Territory> GetByGame(int GameID) 
+        {
+            return dbContext.Territory.Where(t => t.GameId == GameID).ToList();
+        }
 
         public int Update(Territory territory)
         {
