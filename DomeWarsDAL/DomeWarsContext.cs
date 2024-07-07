@@ -30,7 +30,8 @@ namespace DomeWarsDAL
             modelBuilder
                 .ApplyConfiguration(new PlayerConfig())
                 .ApplyConfiguration(new TerritoryConfig())
-                .ApplyConfiguration(new GameConfig()); 
+                .ApplyConfiguration(new GameConfig())
+                .ApplyConfiguration(new BusinessConfig());
         }
     }
 }

@@ -12,8 +12,10 @@ namespace DomeWarsBLL.Interfaces.Services
         void Add(Territory territory);
         Territory? GetById(int id);
         int Update(Territory territory);
-        IEnumerable<Territory> GetAll();
+        List<Territory> GetAll();
         void Delete(int id);
-        public IEnumerable<Territory> GetByGame(int GameID);
+        public List<Territory> GetByGame(int GameID);
+        void MakeMap(int GameID);
+        public void DeleteByGame(int GameID);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using DomeWarsBLL.Interfaces.Repositories;
 using DomeWarsDomain.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
@@ -31,9 +32,10 @@ namespace DomeWarsDAL.Repositories
             throw new NotImplementedException();
         }
 
-        public void NewGame(Business game)
+        public List<Business>? GetByTerritory(int id) 
         {
-            throw new NotImplementedException();
+            List<Business>? result =  dbContext.Business.Where(b => b.TerritoryId == id).ToList();
+            return result;
         }
 
         public void CreateGameBusinesses(List<Territory> Map) 
@@ -196,6 +198,25 @@ namespace DomeWarsDAL.Repositories
                         break;
 
                 }
+            }
+
+            dbContext.Business.AddRange(businesses);
+            dbContext.SaveChanges();
+        }
+
+        public void DeleteMapBusinesses(List<Territory> Map) 
+        {
+            IEnumerable<Business>?  businesses = null;
+            foreach (Territory territory in Map) {
+                businesses = this.GetByTerritory(territory.Id);
+                if (businesses != null)
+                {
+                    foreach (Business business in businesses) 
+                    {
+                        dbContext.Business.Remove(business);
+                    }
+                }
+                dbContext.SaveChanges();
             }
         }
     }

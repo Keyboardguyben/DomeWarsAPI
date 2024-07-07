@@ -21,12 +21,17 @@ namespace DomeWarsBLL.Services
             territoryRepository.Delete(id);
         }
 
-        public IEnumerable<Territory> GetAll()
+        public void DeleteByGame(int GameID)
+        {
+            territoryRepository.DeleteByGame(GameID);
+        }
+
+        public List<Territory> GetAll()
         {
             return territoryRepository.GetAll();
         }
 
-        public IEnumerable<Territory> GetByGame(int GameID)
+        public List<Territory> GetByGame(int GameID)
         {
             return territoryRepository.GetByGame(GameID);
         }
@@ -34,6 +39,11 @@ namespace DomeWarsBLL.Services
         public Territory? GetById(int id)
         {
             return territoryRepository.GetById(id);
+        }
+
+        public void MakeMap(int GameID)
+        {
+            territoryRepository.MakeMap(GameID);
         }
 
         public int Update(Territory territory)

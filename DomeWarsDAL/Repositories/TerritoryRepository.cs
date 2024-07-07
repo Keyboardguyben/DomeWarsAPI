@@ -23,7 +23,7 @@ namespace DomeWarsDAL.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Territory> GetAll()
+        public List<Territory> GetAll()
         {
             return dbContext.Set<Territory>().ToList();
         }
@@ -486,7 +486,7 @@ namespace DomeWarsDAL.Repositories
             dbContext.Territory.Where(t => t.GameId == GameID).ExecuteDelete();
         }
 
-        public IEnumerable<Territory> GetByGame(int GameID) 
+        public List<Territory> GetByGame(int GameID) 
         {
             return dbContext.Territory.Where(t => t.GameId == GameID).ToList();
         }

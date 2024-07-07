@@ -10,9 +10,10 @@ namespace DomeWarsDomain.Entities
     public class Player
     {
         public int Id { get; set; }
-        [MaxLength(30)]
+        [MaxLength(50)]
         public string Username { get; set; } = null!;
         [MaxLength(100)]
+        [EmailAddress]
         public string Email { get; set; } = null!;
         public string Password { get; set; } = null!;
         public string Role { get; set; } = null!;

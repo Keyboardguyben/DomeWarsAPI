@@ -11,29 +11,64 @@ namespace DomeWarsBLL.Services
 {
     public class PlayerService(IPlayerRepository playerRepository) : IPlayerService
     {
-        public void Add(Player player)
+        //public void Add(Player player)
+        //{
+        //    playerRepository.Add(player);
+        //}
+
+        //public void Delete(int id)
+        //{
+        //    playerRepository.Delete(id);
+        //}
+
+        //public IEnumerable<Player> GetAll()
+        //{
+        //    return playerRepository.GetAll();
+        //}
+
+        //public Player? GetById(int id)
+        //{
+        //    return playerRepository.GetById(id);
+        //}
+
+        //public int Update(Player player)
+        //{
+        //    return (int)playerRepository.Update(player);
+        //}
+        public string GetHashPwd(string email)
         {
-            playerRepository.Add(player);
+            return playerRepository.GetHashPwd(email);
         }
 
-        public void Delete(int id)
+        public void IsAdmin(string email)
         {
-            playerRepository.Delete(id);
+            throw new NotImplementedException();
         }
 
-        public IEnumerable<Player> GetAll()
+        public Player Login(string email, string password)
         {
-            return playerRepository.GetAll();
+            string verifyPWD = playerRepository.GetHashPwd(email);
+            if (BCrypt.Net.BCrypt.Verify(password, verifyPWD))
+            {
+                Player connecterUser = playerRepository.Login(email, verifyPWD);
+                return connecterUser;
+            }
+            else
+            {
+                throw new InvalidOperationException("Mot de passe incorrect");
+            }
         }
 
-        public Player? GetById(int id)
+        public void Register(Player player, string password)
         {
-            return playerRepository.GetById(id);
+            string hashPWD = BCrypt.Net.BCrypt.HashPassword(password);
+
+            playerRepository.Register(player, hashPWD);
         }
 
-        public int Update(Player player)
+        public void Update(Player player)
         {
-            return (int)playerRepository.Update(player);
+            playerRepository.Update(player);
         }
     }
 }
