@@ -30,7 +30,12 @@ namespace DomeWarsDAL.Repositories
 
         public Territory? GetById(int id)
         {
-            throw new NotImplementedException();
+            Territory? territory = dbContext.Set<Territory>().Find(id);
+            if (territory != null)
+            {
+                return territory;
+            }
+            return null;
         }
 
         public void MakeMap(int GameID)
@@ -422,7 +427,7 @@ namespace DomeWarsDAL.Repositories
                 GameId = GameID,
                 IsAttacked = false,
                 PoliceAttention = 0,
-                LocationId = 4
+                LocationId = 48
             };
             #endregion
 

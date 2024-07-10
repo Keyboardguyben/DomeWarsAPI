@@ -9,6 +9,7 @@ namespace DomeWarsAPI.DTO
         public string? Password { get; set; }
         public int Round { get; set; }
         public int? MaxRound { get; set; }
+        public int PlayersInGame { get; set; }
         public int PlayerNumber { get; set; }
         public int? PlayerId { get; set; }
 
@@ -19,6 +20,7 @@ namespace DomeWarsAPI.DTO
             Password = game.Password;
             Round = game.Round;
             MaxRound = game.MaxRound;
+            PlayersInGame = game.PlayersInGame;
             PlayerNumber = game.PlayerNumber;
             PlayerId = game.PlayerId;
         }

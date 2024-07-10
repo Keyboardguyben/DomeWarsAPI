@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DomeWarsBLL.Services
 {
-    public class GangService(IGangRepository gangRepository) : IGangService
+    public class GangService(IGangRepository gangRepository , IGameRepository gameRepository) : IGangService
     {
         public void Delete(int id)
         {
@@ -26,9 +26,23 @@ namespace DomeWarsBLL.Services
             return gangRepository.GetById(id);
         }
 
-        public void NewGang(Gang game)
+        public void NewGang(Gang gang)
         {
-            gangRepository.NewGang(game);
+            Game? g = gameRepository.GetById(gang.GameId);
+            if (g != null)
+            {
+                if (g.PlayerNumber > g.PlayersInGame)
+                {
+                    g.PlayersInGame = g.PlayersInGame + 1;
+                    gameRepository.Update(g);
+                    gangRepository.NewGang(gang);
+                }
+                else
+                {
+                    throw new Exception("La game est pleine");
+                }
+            }
+            
         }
     }
 }

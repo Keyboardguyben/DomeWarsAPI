@@ -25,7 +25,7 @@ namespace DomeWarsDAL.Configurations
 
             builder.Property(g => g.Round)
                 .IsRequired()
-                .HasDefaultValue(1);
+                .HasDefaultValue(0);
 
         }
     }

@@ -1,4 +1,5 @@
-﻿using DomeWarsBLL.Interfaces.Repositories;
+﻿using DomeWarsBLL.DTO;
+using DomeWarsBLL.Interfaces.Repositories;
 using DomeWarsBLL.Interfaces.Services;
 using DomeWarsDomain.Entities;
 using System;
@@ -22,6 +23,11 @@ namespace DomeWarsBLL.Services
             return gameRepository.GetAll();
         }
 
+        public IEnumerable<Game> GetNonStarted() 
+        {
+            return gameRepository.GetNonStarted();
+        }
+
         public Game? GetById(int id)
         {
             return gameRepository.GetById(id);
@@ -32,6 +38,16 @@ namespace DomeWarsBLL.Services
             gameRepository.NewGame(game);
             territoryService.MakeMap(game.Id);
             businessService.CreateGameBusinesses(territoryService.GetByGame(game.Id));
+        }
+
+        public void Update(Game game)
+        {
+            gameRepository.Update(game);
+        }
+
+        public int GetPlayerCount(int id)
+        {
+            return gameRepository.GetPlayerCount(id);
         }
     }
 }

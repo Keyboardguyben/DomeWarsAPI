@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using DomeWarsBLL.Interfaces.Repositories;
 using DomeWarsDomain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 
 namespace DomeWarsDAL.Repositories
 {
@@ -26,6 +27,10 @@ namespace DomeWarsDAL.Repositories
         {
             return dbContext.Set<Game>().ToList();
         }
+        public IEnumerable<Game> GetNonStarted() 
+        {
+            return dbContext.Set<Game>().Where(g => g.Round == 0).ToList();
+        }
 
         public Game? GetById(int id)
         {
@@ -34,10 +39,26 @@ namespace DomeWarsDAL.Repositories
             
         }
 
+        public void Update(Game game) 
+        {
+            Game? dbGame = dbContext.Game.SingleOrDefault(g => g.Id == game.Id);
+            if (dbGame != null)
+            {
+                dbGame = game;
+                dbContext.SaveChanges(true);
+            }
+            
+        }
+
         public void NewGame(Game game)
         {
             dbContext.Game.Add(game);
             dbContext.SaveChanges();
+        }
+
+        public int GetPlayerCount(int id)
+        {
+            return dbContext.Gang.Where(g => g.GameId == id).Count();
         }
     }
 }

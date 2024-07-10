@@ -15,6 +15,7 @@ namespace DomeWarsDomain.Entities
         public string? Password { get; set; }
         public int Round {  get; set; }
         public int? MaxRound {  get; set; }
+        public int PlayersInGame { get; set; }
         public int PlayerNumber {  get; set; }
         public int? PlayerId { get; set; }
         public Player? Player { get; set; }

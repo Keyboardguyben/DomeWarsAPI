@@ -1,4 +1,5 @@
-﻿using DomeWarsDomain.Entities;
+﻿using DomeWarsBLL.DTO;
+using DomeWarsDomain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace DomeWarsBLL.Interfaces.Services
         List<Territory> GetAll();
         void Delete(int id);
         public List<Territory> GetByGame(int GameID);
+        public List<CompleteTerritory> GetFullMap(int GameID);
         void MakeMap(int GameID);
         public void DeleteByGame(int GameID);
     }

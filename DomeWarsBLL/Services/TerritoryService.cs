@@ -1,4 +1,5 @@
-﻿using DomeWarsBLL.Interfaces.Repositories;
+﻿using DomeWarsBLL.DTO;
+using DomeWarsBLL.Interfaces.Repositories;
 using DomeWarsBLL.Interfaces.Services;
 using DomeWarsDomain.Entities;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DomeWarsBLL.Services
 {
-    public class TerritoryService(ITerritoryRepository territoryRepository) : ITerritoryService
+    public class TerritoryService(ITerritoryRepository territoryRepository , IGangRepository gangRepository) : ITerritoryService
     {
         public void Add(Territory territory)
         {
@@ -34,6 +35,28 @@ namespace DomeWarsBLL.Services
         public List<Territory> GetByGame(int GameID)
         {
             return territoryRepository.GetByGame(GameID);
+        }
+
+        public List<CompleteTerritory> GetFullMap(int GameID) 
+        {
+            List<CompleteTerritory> completeTerritories = new List<CompleteTerritory>();
+            List<Territory> territories = territoryRepository.GetByGame(GameID);
+            foreach(Territory territory in territories) {
+                CompleteTerritory completeTerritory = new CompleteTerritory();
+                completeTerritory.Id = territory.Id;
+                completeTerritory.Name = territory.Name;
+                completeTerritory.LocationId = territory.LocationId;
+                completeTerritory.GameId = territory.GameId;
+                completeTerritory.IsAttacked = territory.IsAttacked;
+                completeTerritory.RoundsSinceAttack = territory.RoundsSinceAttack;       
+                if(territory.GangId != null)
+                {
+                    completeTerritory.GangId = territory.GangId;
+                    completeTerritory.gang = gangRepository.GetById(completeTerritory.GangId ?? default(int));
+                }            
+                completeTerritories.Add(completeTerritory);
+            }
+            return completeTerritories;
         }
 
         public Territory? GetById(int id)

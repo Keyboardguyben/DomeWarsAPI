@@ -18,14 +18,27 @@ namespace DomeWarsAPI.Controllers
                 .Select(t => new TerritoryDTO(t)));
         }
 
-        [HttpGet("GetByGame")]
+        [HttpGet("GetByGame/{gameId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult GetByGame(int GameId) 
+        public IActionResult GetByGame([FromRoute] int gameId)
         {
-            return Ok(territoryService.GetByGame(GameId).Select(t => new TerritoryDTO(t)));
+            return Ok(territoryService.GetByGame(gameId).Select(t => new TerritoryDTO(t)));
         }
 
-        
+        [HttpGet("GetFullMap/{gameId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public IActionResult GetFullGame([FromRoute] int gameId) 
+        {
+            return Ok(territoryService.GetFullMap(gameId));
+        }
+
+        [HttpGet("GetById/{territoryId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public IActionResult GetById([FromRoute]int id) 
+        {
+            TerritoryDTO t = new TerritoryDTO(territoryService.GetById(id));
+            return Ok(t);
+        }
 
     }
 }

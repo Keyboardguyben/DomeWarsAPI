@@ -11,11 +11,18 @@ namespace DomeWarsAPI.Controllers
     [ApiController]
     public class GangController(IGangService gangService) : Controller
     {
+        [HttpGet("GetById")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public IActionResult GetById(int id) 
+        {
+            GangDTO g = new GangDTO( gangService.GetById(id));
+            return Ok(g);
+        }
+
         [HttpGet("GetAll")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult Get()
         {
-            Console.WriteLine("Coucou1");
             return Ok(gangService.GetAll()
                 .Select(g => new GangDTO(g)));
         }
@@ -27,7 +34,9 @@ namespace DomeWarsAPI.Controllers
             Gang gang = new Gang
             {
                 Name = form.Name,
-                Color = form.Color
+                Color = form.Color,
+                GameId = form.GameId,
+                PlayerId = form.PlayerId,
 
             };
             gangService.NewGang(gang);

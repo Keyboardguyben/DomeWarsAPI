@@ -11,8 +11,12 @@ namespace DomeWarsBLL.Interfaces.Repositories
     {
         Game? GetById(int id);
         void NewGame(Game game);
+        public void Update(Game game);
         IEnumerable<Game> GetAll();
+        IEnumerable<Game> GetNonStarted();
+        int GetPlayerCount(int id);
         void Delete(int id);
+
 
     }
 }

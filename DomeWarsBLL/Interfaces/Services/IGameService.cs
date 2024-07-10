@@ -1,4 +1,5 @@
-﻿using DomeWarsDomain.Entities;
+﻿using DomeWarsBLL.DTO;
+using DomeWarsDomain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,10 @@ namespace DomeWarsBLL.Interfaces.Services
     {
         Game? GetById(int id);
         void NewGame(Game game);
+        public void Update(Game game);
         IEnumerable<Game> GetAll();
+        public IEnumerable<Game> GetNonStarted();
         void Delete(int id);
+        public int GetPlayerCount(int id);
     }
 }
