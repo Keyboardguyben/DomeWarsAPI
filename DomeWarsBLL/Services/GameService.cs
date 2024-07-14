@@ -33,11 +33,12 @@ namespace DomeWarsBLL.Services
             return gameRepository.GetById(id);
         }
 
-        public void NewGame(Game game)
+        public int NewGame(Game game)
         {
-            gameRepository.NewGame(game);
+            int id = gameRepository.NewGame(game);
             territoryService.MakeMap(game.Id);
             businessService.CreateGameBusinesses(territoryService.GetByGame(game.Id));
+            return id;
         }
 
         public void Update(Game game)

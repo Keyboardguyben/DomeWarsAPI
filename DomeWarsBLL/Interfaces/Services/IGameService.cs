@@ -11,7 +11,7 @@ namespace DomeWarsBLL.Interfaces.Services
     public interface IGameService
     {
         Game? GetById(int id);
-        void NewGame(Game game);
+        int NewGame(Game game);
         public void Update(Game game);
         IEnumerable<Game> GetAll();
         public IEnumerable<Game> GetNonStarted();

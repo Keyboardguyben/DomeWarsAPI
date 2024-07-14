@@ -50,10 +50,11 @@ namespace DomeWarsDAL.Repositories
             
         }
 
-        public void NewGame(Game game)
+        public int NewGame(Game game)
         {
             dbContext.Game.Add(game);
             dbContext.SaveChanges();
+            return game.Id;
         }
 
         public int GetPlayerCount(int id)

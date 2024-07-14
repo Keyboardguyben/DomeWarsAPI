@@ -13,5 +13,6 @@ namespace DomeWarsBLL.Interfaces.Services
         void NewGang(Gang game);
         IEnumerable<Gang> GetAll();
         void Delete(int id);
+        public List<Gang> GetGameGangs(int Gameid);
     }
 }

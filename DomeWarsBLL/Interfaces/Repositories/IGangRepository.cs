@@ -10,8 +10,9 @@ namespace DomeWarsBLL.Interfaces.Repositories
     public interface IGangRepository
     {
         Gang? GetById(int id);
-        void NewGang(Gang game);
+        int NewGang(Gang game);
         IEnumerable<Gang> GetAll();
         void Delete(int id);
+        public List<Gang> GetGameGangs(int Gameid);
     }
 }

@@ -10,7 +10,7 @@ namespace DomeWarsAPI.DTO
         public int PoliceAttention { get; set; }
         public int? RoundsSinceAttack { get; set; }
         public bool IsAttacked { get; set; }
-        public int LocalisationId { get; set; }
+        public int LocationId { get; set; }
         public int? GangId { get; set; }
         public int? GameId { get; set; }
 
@@ -23,7 +23,7 @@ namespace DomeWarsAPI.DTO
             IsAttacked = territory.IsAttacked;
             GangId = territory.GangId;
             GameId = territory.GameId;
-            LocalisationId = territory.LocationId;
+            LocationId = territory.LocationId;
         }
     }
 }

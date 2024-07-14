@@ -3,6 +3,7 @@ using DomeWarsBLL.Interfaces.Services;
 using DomeWarsBLL.Services;
 using DomeWarsDAL.Migrations;
 using DomeWarsDomain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DomeWarsAPI.Controllers
@@ -13,10 +14,17 @@ namespace DomeWarsAPI.Controllers
     {
         [HttpGet("GetById")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult GetById(int id) 
+        public IActionResult GetById(int id)
         {
-            GangDTO g = new GangDTO( gangService.GetById(id));
+            GangDTO g = new GangDTO(gangService.GetById(id));
             return Ok(g);
+        }
+
+        [HttpGet("GetGameGangs")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public IActionResult GetGameGangs(int gameid) 
+        {
+            return Ok(gangService.GetGameGangs(gameid));
         }
 
         [HttpGet("GetAll")]
@@ -28,8 +36,9 @@ namespace DomeWarsAPI.Controllers
         }
 
         [HttpPost("Create")]
+        [Authorize("isConnectedPolicy")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult Post([FromForm] AddGangForm form)
+        public IActionResult Post([FromBody] AddGangForm form)
         {
             Gang gang = new Gang
             {
@@ -40,7 +49,7 @@ namespace DomeWarsAPI.Controllers
 
             };
             gangService.NewGang(gang);
-            return Ok();
+            return Ok(1);
         }
     }
 }

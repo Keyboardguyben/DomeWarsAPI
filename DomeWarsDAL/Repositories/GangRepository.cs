@@ -38,10 +38,17 @@ namespace DomeWarsDAL.Repositories
             return null;
         }
 
-        public void NewGang(Gang gang)
+        public List<Gang> GetGameGangs(int Gameid)
         {
-            dbContext.Gang.Add(gang);
+            List<Gang> gangs = dbContext.Gang.Where(g => g.GameId == Gameid).ToList();
+            return gangs;
+        }
+
+        public int NewGang(Gang gang)
+        {
+            dbContext.Gang.Add(gang);         
             dbContext.SaveChanges();
+            return gang.Id;
         }
     }
 }

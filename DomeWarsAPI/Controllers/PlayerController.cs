@@ -63,8 +63,6 @@ namespace DomeWarsAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Register(RegisterForm form)
         {
-
-
             if (!ModelState.IsValid) return BadRequest();
             try
             {

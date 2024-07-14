@@ -24,6 +24,7 @@ namespace DomeWarsAPI.Tools
             Claim[] myClaims = new[]
             {
                 new Claim(ClaimTypes.Email, player.Email),
+                new Claim("Username", player.Username),
                 new Claim("Id", player.Id.ToString())
             };
 

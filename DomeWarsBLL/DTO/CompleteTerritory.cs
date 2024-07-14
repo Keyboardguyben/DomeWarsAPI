@@ -10,6 +10,7 @@ namespace DomeWarsBLL.DTO
 {
     public class CompleteTerritory : Territory
     {
-        public Gang? gang;
+        public string GangName { get; set; }
+        public string GangColor { get; set; }
     }
 }

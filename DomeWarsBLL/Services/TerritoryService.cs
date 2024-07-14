@@ -48,16 +48,25 @@ namespace DomeWarsBLL.Services
                 completeTerritory.LocationId = territory.LocationId;
                 completeTerritory.GameId = territory.GameId;
                 completeTerritory.IsAttacked = territory.IsAttacked;
-                completeTerritory.RoundsSinceAttack = territory.RoundsSinceAttack;       
-                if(territory.GangId != null)
+                completeTerritory.RoundsSinceAttack = territory.RoundsSinceAttack;
+                completeTerritory.GangId = territory.GangId;
+                if (territory.GangId != null)
                 {
-                    completeTerritory.GangId = territory.GangId;
-                    completeTerritory.gang = gangRepository.GetById(completeTerritory.GangId ?? default(int));
-                }            
+                    Gang gang = gangRepository.GetById(completeTerritory.GangId ?? default(int));
+                    completeTerritory.GangColor = gang.Color;
+                    completeTerritory.GangName = gang.Name;
+                }
+                else
+                {
+                    completeTerritory.GangColor = "";
+                    completeTerritory.GangName = "";
+                }
                 completeTerritories.Add(completeTerritory);
             }
             return completeTerritories;
         }
+
+
 
         public Territory? GetById(int id)
         {

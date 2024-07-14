@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DomeWarsBLL.Services
 {
-    public class GangService(IGangRepository gangRepository , IGameRepository gameRepository) : IGangService
+    public class GangService(IGangRepository gangRepository , IGameRepository gameRepository , ITerritoryRepository territoryRepository) : IGangService
     {
         public void Delete(int id)
         {
@@ -26,16 +26,49 @@ namespace DomeWarsBLL.Services
             return gangRepository.GetById(id);
         }
 
+        public List<Gang> GetGameGangs(int Gameid)
+        {
+            return gangRepository.GetGameGangs(Gameid);
+        }
+
         public void NewGang(Gang gang)
         {
             Game? g = gameRepository.GetById(gang.GameId);
+            int i;
             if (g != null)
             {
                 if (g.PlayerNumber > g.PlayersInGame)
                 {
-                    g.PlayersInGame = g.PlayersInGame + 1;
-                    gameRepository.Update(g);
-                    gangRepository.NewGang(gang);
+                    g.PlayersInGame++;
+                    gameRepository.Update(g);                                      
+                    i = gangRepository.NewGang(gang);
+                    List<Territory> territories = territoryRepository.GetByGame(gang.GameId);
+                    Territory territory;
+                    switch (g.PlayersInGame)
+                    {
+                        case 1:
+                            territory = territories.Find(t => t.LocationId == 1);
+                            territory.GangId = i;
+                            territoryRepository.Update(territory);
+                            break;
+                        case 2:
+                            territory = territories.Find(t => t.LocationId == 6);
+                            territory.GangId = i;
+                            territoryRepository.Update(territory);
+                            break;
+                        case 3:
+                            territory = territories.Find(t => t.LocationId == 43);
+                            territory.GangId = i;
+                            territoryRepository.Update(territory);
+                            break;
+                        case 4:
+                            territory = territories.Find(t => t.LocationId == 48);
+                            territory.GangId = i;
+                            territoryRepository.Update(territory);
+                            break;
+                        default:
+                            break;
+                    }
                 }
                 else
                 {

@@ -2,6 +2,7 @@
 using DomeWarsBLL.Interfaces.Services;
 using DomeWarsBLL.Services;
 using DomeWarsDomain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
 
@@ -53,21 +54,28 @@ namespace DomeWarsAPI.Controllers
         /// <param name="form"> A form with the username, email address and password of the user.</param>
         /// <returns></returns>
         [HttpPost("Create")]
+        [Authorize("isConnectedPolicy")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult Post([FromForm] AddGameForm form)
+        public IActionResult Post([FromBody] AddGameForm form)
         {
+            int id;
             Game game = new Game
             {
                 Name = form.Name,
                 MaxRound = form.MaxRound,
                 Password = form.Password,
                 PlayerNumber = form.PlayerNumber,
-
+                PlayersInGame = 0,
             };
-            gameService.NewGame(game);
-            return Ok();
+            id = gameService.NewGame(game);
+            return Ok(id);
         }
 
+        /// <summary>
+        /// Delete a Game from server
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>An Ok signal</returns>
         [HttpDelete("Delete")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult Delete(int id)
